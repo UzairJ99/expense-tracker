@@ -1,15 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {useState} from 'react';
 import './App.css';
 
 function App() {
-  const [cashflows, setCashflows] = useState([1]);
-  const [expenses, setExpenses] = useState([{}]);
+  const [cashflows, setCashflows] = useState([]);
+  const [expenses, setExpenses] = useState([]);
   const [input, setInput] = useState({name: 'purchase', value: 0});
+  const [balance, setBalance] = useState(0);
 
   const addCashflow = () => {
     let newcashflow = [...cashflows];
-    newcashflow.push(1);
+    newcashflow.push(0);
     setCashflows(newcashflow);
   }
 
@@ -38,6 +39,19 @@ function App() {
     setInput(newinput);
   }
 
+  const handleIncomeChange = (e, stream) => {
+    let newincome = [...cashflows];
+    newincome[stream] = e.currentTarget.value;
+    setCashflows(newincome);
+  }
+
+  useEffect(() => {
+    let sum = 0;
+    cashflows.length > 0 && cashflows.forEach(stream => sum += parseFloat(stream));
+    expenses.length > 0 && expenses.forEach(item => sum -= parseFloat(item.value))
+    setBalance(sum.toFixed(2));
+  },[cashflows, expenses])
+
   return (
     <>
       <div>Expense Tracker</div>
@@ -46,7 +60,7 @@ function App() {
           cashflows.map((income, index) => {
             return (
               <div key={index}>
-              <div>Income {index+1}</div><input />
+                <div>Income {index+1}</div><input type="text" onChange={(e) => handleIncomeChange(e, index)} />
               </div>
             )
           })
@@ -69,6 +83,9 @@ function App() {
       <input type="text" onChange={handleExpenseNameChange}/>
       <input type="text" onChange={handleExpenseValueChange} />
       <button onClick={()=>addExpense()}>Add expense</button>
+
+      <div>BALANCE:</div>
+      <div>{balance}</div>
     </>
   );
 }
