@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import {useState} from 'react';
 import './App.css';
 import ExpenseInput from './components/ExpenseInput';
-import CashflowInput from './components/cashflowInput';
+import CashflowInput from './components/CashflowInput';
 
 function App() {
   const [cashflows, setCashflows] = useState([0]);
