@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
 import {useState} from 'react';
 import './App.css';
-import CashflowInput from './components/CashflowInput';
+import ExpenseInput from './components/ExpenseInput';
+import CashflowInput from './components/cashflowInput';
 
 function App() {
   const [cashflows, setCashflows] = useState([0]);
@@ -69,12 +70,7 @@ function App() {
       <div>
         {
           expenses.map((expense, index) => {
-            return (
-              <div key={index}>
-              <div>{expense?.name}</div>
-              <div>{expense?.value}</div>
-              </div>
-            )
+            <ExpenseInput expense={expense} index={index} />
           })
         }
       </div>
