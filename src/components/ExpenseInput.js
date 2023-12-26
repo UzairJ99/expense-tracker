@@ -1,12 +1,13 @@
 import React from "react";
 
-const ExpenseInput = ({expense, index}) => {
-    return (
-        <div key={index}>
-        <div>{expense?.name}</div>
-        <div>{expense?.value}</div>
-        </div>
-      )
-}
+const ExpenseInput = ({ expenseHandler, handleExpenseNameChange, handleExpenseValueChange }) => {
+  return (
+    <>
+      <input type="text" onChange={handleExpenseNameChange} />
+      <input type="text" onChange={handleExpenseValueChange} />
+      <button onClick={() => expenseHandler()}>Add expense</button>
+    </>
+  );
+};
 
 export default ExpenseInput;
