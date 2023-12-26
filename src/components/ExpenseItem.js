@@ -1,3 +1,8 @@
+/*
+This component is a list item of an individual expense.
+*/
+
+// LIBRARIES
 import React from "react";
 
 const ExpenseItem = ({ expense }) => {

@@ -1,3 +1,8 @@
+/*
+This component is to add expenses to the list.
+*/
+
+// LIBRARIES
 import React from "react";
 
 const ExpenseInput = ({ expenseHandler, handleExpenseNameChange, handleExpenseValueChange }) => {
